@@ -195,7 +195,7 @@ public class RetryCountMessageListener implements MessageListener, InitializingB
 		} else {
 			if (this.errorJmsOperations instanceof JmsTemplate) {
 				final JmsTemplate errorTemplate = (JmsTemplate) this.errorJmsOperations;
-				if (errorTemplate.getDefaultDestination() == null) {
+				if (errorTemplate.getDefaultDestination() == null && errorTemplate.getDefaultDestinationName() == null) {
 					Assert.notNull(this.errorDestination, "An error destination must be provided if a default isn't set on the template");
 				}
 			}
@@ -203,7 +203,7 @@ public class RetryCountMessageListener implements MessageListener, InitializingB
 		Assert.notNull(this.retryJmsOperations, "A retry template must be provided.");
 		if (this.retryJmsOperations instanceof JmsTemplate) {
 			final JmsTemplate retryTemplate = (JmsTemplate) this.retryJmsOperations;
-			if (retryTemplate.getDefaultDestination() == null) {
+			if (retryTemplate.getDefaultDestination() == null && retryTemplate.getDefaultDestinationName() == null) {
 				Assert.notNull(this.retryDestination, "A retry destination must be provided if a default isn't set on the template");
 			}
 		}
